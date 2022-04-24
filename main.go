@@ -54,7 +54,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if msg.idx < idx { // event expired
 			return m, nil
 		}
-		idx++
 	}
 	x, y := m.snake[0].x, m.snake[0].y
 	switch m.dir {
@@ -108,6 +107,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.snake = append([]pair{{x, y}}, m.snake[:len(m.snake)-1]...)
 		}
 
+		idx++
 		curIdx := idx
 		sleep := time.Duration(50) * time.Millisecond
 		if m.score < 45 {
